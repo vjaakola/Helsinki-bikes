@@ -67,7 +67,7 @@ station id, city, name, address, operator, capacity, longitude, latitude
 
 Then I also prepared two tables for machine learning to make a prediction machine.
 
-´´ML table for 10 min interval´´ (ml_bikes_10min)
+``ML table for 10 min interval`` (ml_bikes_10min)
 date, year, month, day, weekday, hour, air temperature, humidity, wind speed, bike count
 
 ``ML table for 60 min interval`` (ml_bikes_60min)
