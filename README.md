@@ -53,30 +53,24 @@ Stations data:
 #### Conceptual Data Model
 For the main purpose the simplified star schema model suits best. I prepared a fact table to start quick analysis.
 
-Fact table (fact_table) 
+´´Fact table´´ (fact_table) 
 id, year, month, day, weekday, hour, departure station name, departure time, return time, return station name, departure station id, return station id, distance, duration, city, longitude, latitude, count
 
-Bikes dimension table (dim_bikes_orig)
+´´Bikes dimension table´´ (dim_bikes_orig)
 id, departure time, return time, departure station id, departure station name, return station id, return station name, distance, duration, year, month, day, weekday, hour
 
-Bikes dimension table for 10 min (dim_bikes_10min)
-id, departure time, return time, departure station id, departure station name, return station id, return station name, distance, duration, year, month, day, weekday, hour, date
-
-Bikes dimension table for 60 min (dim_bikes_60min)
-id, departure time, return time, departure station id, departure station name, return station id, return station name, distance, duration, year, month, day, weekday, hour, date
-
-Weather dimension table (dim_temp_10min) 
+´´Weather dimension table´´ (dim_temp_10min) 
 date, time zone, cloud amount, pressure, relative humidity, precipitation intensity, air temperature, dew-point temperature, horizontal visibility, wind direction, gust speed, wind speed
 
-Stations dimension table (dim_stations) 351 records
+´´Stations dimension table´´ (dim_stations) 351 records
 station id, city, name, address, operator, capacity, longitude, latitude
 
 Then I also prepared two tables for machine learning to make a prediction machine.
 
-ML table for 10 min interval (ml_bikes_10min)
+´´ML table for 10 min interval´´ (ml_bikes_10min)
 date, year, month, day, weekday, hour, air temperature, humidity, wind speed, bike count
 
-ML table for 60 min interval (ml_bikes_60min)
+´´ML table for 60 min interval´´ (ml_bikes_60min)
 date, year, month, day, weekday, hour, air temperature, humidity, wind speed, bike count
 
 
