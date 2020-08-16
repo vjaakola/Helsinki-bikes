@@ -74,7 +74,7 @@ date, year, month, day, weekday, hour, air temperature, humidity, wind speed, bi
 date, year, month, day, weekday, hour, air temperature, humidity, wind speed, bike count
 
 
-#### 3.2 Mapping ETL Pipeline
+#### Mapping ETL Pipeline
 
 Use an effective way to clean and create tables
 
@@ -94,3 +94,10 @@ Use an effective way to clean and create tables
 14. Create tempView from bikes 60min, temp 60min and bike count 60min and make bikes ml table
 15. Make data quality checks
 
+### Author
+
+Vesa Jaakola
+
+### Acknowledgements
+
+Must give credit to Udacity
