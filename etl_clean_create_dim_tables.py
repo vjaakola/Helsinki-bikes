@@ -45,8 +45,23 @@ class Operators:
         clean and create bike trips dim table for 10 min interval
         preparingin option to join with 10 min temp table
         """
-        df = df.withColumn('date', ((round(unix_timestamp(col("departure")) / 600) * 600).cast('timestamp')))
-
+        df = df\
+            .withColumn('departure', col('Departure').cast('timestamp'))\
+            .withColumn('return', col('Return').cast('timestamp'))\
+            .withColumn('dep_station_id', col('Departure station id').cast('integer'))\
+            .withColumnRenamed('Departure station name', 'dep_station_name') \
+            .withColumn('ret_station_id', col('Return station id').cast('integer'))\
+            .withColumnRenamed('Return station name', 'ret_station_name') \
+            .withColumn('distance', col('Covered distance (m)').cast('integer'))\
+            .withColumnRenamed('Duration (sec.)', 'duration')\
+            .withColumn('date', ((round(unix_timestamp(col("departure")) / 600) * 600).cast('timestamp'))) \
+            .withColumn('year', year('date'))\
+            .withColumn('month', month('date'))\
+            .withColumn('day', dayofmonth('date'))\
+            .withColumn('weekday', date_format(col('date'), 'EEEE'))\
+            .withColumn('hour', hour('date'))\
+            .drop('Departure station id', 'Departure station name','Return station id','Return station name','Covered distance (m)','Duration (sec.)')\
+            .fillna(0)\
         
         return df
 
@@ -59,8 +74,23 @@ class Operators:
         clean and create bike trips dim table for 60 min interval
         preparingin option to join with 60 min temp table
         """
-        df = df.withColumn('date', ((round(unix_timestamp(col("departure")) / 3600) * 3600).cast('timestamp')))
-
+        df = df\
+            .withColumn('departure', col('Departure').cast('timestamp'))\
+            .withColumn('return', col('Return').cast('timestamp'))\
+            .withColumn('dep_station_id', col('Departure station id').cast('integer'))\
+            .withColumnRenamed('Departure station name', 'dep_station_name') \
+            .withColumn('ret_station_id', col('Return station id').cast('integer'))\
+            .withColumnRenamed('Return station name', 'ret_station_name') \
+            .withColumn('distance', col('Covered distance (m)').cast('integer'))\
+            .withColumnRenamed('Duration (sec.)', 'duration')\
+            .withColumn('date', ((round(unix_timestamp(col("departure")) / 3600) * 3600).cast('timestamp'))) \
+            .withColumn('year', year('date'))\
+            .withColumn('month', month('date'))\
+            .withColumn('day', dayofmonth('date'))\
+            .withColumn('weekday', date_format(col('date'), 'EEEE'))\
+            .withColumn('hour', hour('date'))\
+            .drop('Departure station id', 'Departure station name','Return station id','Return station name','Covered distance (m)','Duration (sec.)')\
+            .fillna(0)\
         
         return df
         
@@ -104,9 +134,6 @@ class Operators:
     def temp_clean_create_60min(temp_df, output_data):
         temp_df = temp_df.withColumn('date', ((round(unix_timestamp(col("Date")) / 3600) * 3600).cast('timestamp')))
 
-        # write dimension to parquet file
-        output_data = 'helsinki_bikes/results/'
-        temp_df.write.parquet(output_data + "dim_temp_60min", mode="overwrite")
         return temp_df
 
 
